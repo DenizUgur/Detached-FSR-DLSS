@@ -39,7 +39,7 @@ The sample must be compiled and run on a Windows machine. Make sure that you hav
 -   [Visual Studio 2022](https://visualstudio.microsoft.com/downloads/)
 -   [Windows 10 SDK 10.0.19041.0](https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk)
 -   [Vulkan SDK 1.4.304.0](https://vulkan.lunarg.com/sdk/home)
--   [CMake 3.17](https://cmake.org/download/)
+-   [CMake 3.21](https://cmake.org/download/)
 
 > [!IMPORTANT]
 > In order to test DLSS 3 (Frame Generation), you need at least 40-series NVIDIA GPU.
@@ -64,7 +64,7 @@ choco install cmake -y
 2. Launch Visual Studio Installer and install the following components:
     - Desktop development with C++
     - Windows 10 SDK (10.0.19041.0)
-3. Install [CMake 3.17](https://cmake.org/download/).
+3. Install [CMake 3.21](https://cmake.org/download/).
 
 #### Install the Vulkan SDK
 
@@ -85,9 +85,13 @@ cd TransparentSR
 .\GenerateVisualStudioSolution.bat
 ```
 
-This will generate a `build\` directory where you will find the solution for the SDK (`FidelityFX Native SDK.sln`). Launch the solution with Visual Studio and build the project using `ReleaseDX12` configuration.
+> [!NOTE]
+> This will generate a `build\` directory where you will find the solution for the SDK (`FidelityFX Native SDK.sln`). Launch the solution with Visual Studio and build the project using `ReleaseDX12` configuration.
 
-> [!IMPORTANT]
+> [!TIP]
+> You may need to launch Visual Studio as an administrator to build the solution.
+
+> [!TIP]
 > If you encounter an error regarding a missing `ffx_backend_dx12_x64.dll` file, modify a file under `framework\cauldron\framework\src\render\dx12` and rebuild the solution.
 
 Also be sure to download the media files using the following command:
@@ -103,7 +107,6 @@ Also be sure to download the media files using the following command:
 
 Detaching the upscaler from the rendering process requires both process to be in sync. To account for scheduling issues and not to drop any rendered frames, both processes will wait for each other to fill/empty the resource pool. The resource pool is a static pool of 10 buffers. Each buffer has enough space for all the required resources for both FSR and DLSS to function.
 
-> [!NOTE]
 > It is possible to optimize this aspect by using a dynamic resource pool. This will allow the upscaler to run at a different rate than the renderer. However, at this time this sample is no more than a proof of concept.
 
 ### Prerequisites for running the sample
@@ -123,7 +126,7 @@ The version numbers are the ones used during the development of the sample. It i
 2. Run the following commands to install the dependencies:
 
 ```bash
-chocho install python nodejs rust go llvm ffmpeg -y
+choco install python nodejs rust go llvm ffmpeg -y
 ```
 
 #### Install the Python dependencies
@@ -182,7 +185,7 @@ The sample's configuration must be set to stream the content. Please refer to th
 python governor.py --render-res 1285 835 --upscaler FSR3 --stream
 ```
 
-> [!NOTE]
+> [!TIP]
 > There's no restriction on which parameters can be used with the `--stream` flag.
 
 ### Viewing the stream
