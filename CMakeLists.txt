@@ -32,6 +32,10 @@ else()
     set(SOLUTION_NAME "FidelityFX Native SDK")
 endif()
 
+if(CMAKE_VERSION VERSION_GREATER "3.28.6")
+    message(FATAL_ERROR "This project does not support CMake versions greater than 3.28.6. Detected version: ${CMAKE_VERSION}")
+endif()
+
 project ("${SOLUTION_NAME}" VERSION 1.0.0 LANGUAGES C CXX)
 message(STATUS "Building FidelityFX SDK")
 

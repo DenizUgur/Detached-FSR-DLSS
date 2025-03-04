@@ -41,6 +41,9 @@ The sample must be compiled and run on a Windows machine. Make sure that you hav
 -   [Vulkan SDK 1.4.304.0](https://vulkan.lunarg.com/sdk/home)
 -   [CMake 3.21](https://cmake.org/download/)
 
+> [!WARNING]
+> This project does not work with CMake versions greater than 3.28.6.
+
 > [!IMPORTANT]
 > In order to test DLSS 3 (Frame Generation), you need at least 40-series NVIDIA GPU.
 
