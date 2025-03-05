@@ -23,6 +23,7 @@ import numpy as np
 import pyautogui
 import matplotlib.pyplot as plt
 from skimage import img_as_float, io
+# pylint: disable-next=E0611
 from skimage.metrics import (
     peak_signal_noise_ratio,
     structural_similarity,
@@ -333,8 +334,9 @@ def parse_args():
     )
     parser.add_argument(
         "--stream",
-        type=str,
-        help="Stream the upscaled content over Media-over-QUIC and sets the namespace to the value. Launches moq-relay.exe (unless --disable-supplementary is set) and configures the upscaler to stream the content",
+        action="store_true",
+        default=False,
+        help="Stream the upscaled content over Media-over-QUIC. Launches moq-relay.exe (unless --disable-supplementary is set) and configures the upscaler to stream the content",
     )
     parser.add_argument(
         "--hide-ui",
@@ -355,10 +357,10 @@ def parse_args():
         help="Disable supplementary processes",
     )
     parser.add_argument(
-        "--use-release-build",
+        "--use-debug-build",
         action="store_true",
-        default=True,
-        help="Use the release build of FidelityFX FSR",
+        default=False,
+        help="Use the debug build of FidelityFX FSR",
     )
     parser.add_argument(
         "--structured-logs",
@@ -467,9 +469,9 @@ def get_process_args(
 def main(opts):
     # Default process arguments
     exe_name = (
-        "FFX_FSR_NATIVE_DX12.exe"
-        if opts.use_release_build
-        else "FFX_FSR_NATIVE_DX12D.exe"
+        "FFX_FSR_NATIVE_DX12D.exe"
+        if opts.use_debug_build
+        else "FFX_FSR_NATIVE_DX12.exe"
     )
 
     # If streaming is enabled, launch the moq-relay process

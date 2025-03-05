@@ -114,23 +114,7 @@ Detaching the upscaler from the rendering process requires both process to be in
 
 ### Prerequisites for running the sample
 
-The version numbers are the ones used during the development of the sample. It is possible to use newer versions of the software.
-
--   [Python](https://www.python.org/downloads/) (3.12.6)
--   [Node.js](https://nodejs.org/en/download/) (22.8.0) (for cloud gaming)
--   [Rust](https://www.rust-lang.org/tools/install) (1.81.0) (for cloud gaming)
--   [Go](https://go.dev/dl/) (1.23.1) (for cloud gaming)
--   [Clang](https://chocolatey.org/packages/llvm) (18.1.8) (for cloud gaming)
--   [FFmpeg](https://ffmpeg.org/download.html) (7.0.2) (for cloud gaming)
-
-#### Installation with Chocolatey (recommended)
-
-1. Install [Chocolatey](https://chocolatey.org/install).
-2. Run the following commands to install the dependencies:
-
-```bash
-choco install python nodejs rust go llvm ffmpeg -y
-```
+To run the samples, you need to install only [Python](https://www.python.org/downloads/). We have used 3.12.6 during the development of the sample.
 
 #### Install the Python dependencies
 
@@ -172,6 +156,16 @@ For example, the following sites explain the detailed (and different) integratio
 
 TransparentSR is evaluated in a cloud gaming system that is built on the emerging Media-over-QUIC (MoQ) protocol. The system uses the [Media-over-QUIC (MoQ)](https://datatracker.ietf.org/group/moq/about/) protocol for streaming the upscaled content. The sample and the governor script can be configured to stream the upscaled content locally. This is done by setting the `--stream` flag in the governor script.
 
+### Prerequisites for running the sample
+
+The version numbers are the ones used during the development of the sample. It is possible to use newer versions of the software.
+
+-   [Node.js](https://nodejs.org/en/download/) (22.8.0)
+-   [Rust](https://www.rust-lang.org/tools/install) (1.81.0)
+-   [Go](https://go.dev/dl/) (1.23.1)
+-   [LLVM](https://chocolatey.org/packages/llvm) (18.1.8)
+-   [FFmpeg](https://ffmpeg.org/download.html) (7.0.2)
+
 ### Setup
 
 Run the convenience script to setup the MOQ server:
@@ -189,7 +183,7 @@ python governor.py --render-res 1285 835 --upscaler FSR3 --stream
 ```
 
 > [!TIP]
-> There's no restriction on which parameters can be used with the `--stream` flag.
+> Go the the following links to view the stream only after both the renderer and the upscaler are running.
 
 ### Viewing the stream
 

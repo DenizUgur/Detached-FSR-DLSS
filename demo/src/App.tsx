@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Player } from "./lib/playback";
 import "./App.css";
 
@@ -24,7 +24,9 @@ function App() {
     const handleSessionData = async () => {
         if (!player.current) return;
         const { stats, timings, skips } = await player.current.getSessionData();
-        const overridenHost = new URL(window.location.href).searchParams.get("sinkHost") || window.location.hostname;
+        const overridenHost =
+            new URL(window.location.href).searchParams.get("sinkHost") ||
+            window.location.hostname;
         await fetch(`http://${overridenHost}:12000/sink`, {
             method: "POST",
             mode: "no-cors",
@@ -35,16 +37,23 @@ function App() {
                 name: "live",
                 stats,
                 timings,
-                skips
+                skips,
             }),
         });
     };
 
+    useEffect(() => {
+        handleStart();
+        return () => {
+            if (player.current) player.current.close();
+        };
+    }, []);
+
     return (
         <>
             <canvas ref={ref}></canvas>
-            <button onClick={handleStart}>Start</button>
-            <button onClick={handleSessionData}>Notify Sink</button>
+            <button onClick={handleStart} hidden>Start</button>
+            <button onClick={handleSessionData} hidden>Notify Sink</button>
         </>
     );
 }
