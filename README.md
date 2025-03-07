@@ -163,7 +163,7 @@ The version numbers are the ones used during the development of the sample. It i
 -   [Node.js](https://nodejs.org/en/download/) (22.8.0)
 -   [Rust](https://www.rust-lang.org/tools/install) (1.81.0)
 -   [Go](https://go.dev/dl/) (1.23.1)
--   [LLVM](https://chocolatey.org/packages/llvm) (18.1.8)
+-   [LLVM](https://github.com/llvm/llvm-project/releases/tag/llvmorg-18.1.8) (18.1.8)
 -   [FFmpeg](https://ffmpeg.org/download.html) (7.0.2)
 
 ### Setup
@@ -181,6 +181,9 @@ The sample's configuration must be set to stream the content. Please refer to th
 ```bash
 python governor.py --render-res 1285 835 --upscaler FSR3 --stream
 ```
+
+> [!TIP]
+> Append `--use-default` to the command-line if you are facing with reliability issues.
 
 > [!TIP]
 > Go the the following links to view the stream only after both the renderer and the upscaler are running.
